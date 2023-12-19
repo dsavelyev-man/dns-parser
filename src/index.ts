@@ -1,18 +1,21 @@
 import puppeteer, {Page} from "puppeteer";
-import {readFile, appendFileSync, existsSync, writeFileSync} from "fs";
+import {readFile, appendFileSync, existsSync, writeFileSync, mkdirSync} from "fs";
 import { join } from "path";
 import {input, select} from "@inquirer/prompts";
 import {stringify} from "csv-stringify";
 
 const PARSE_URL = "https://www.dns-shop.ru/catalog/17a8d26216404e77/vstraivaemye-xolodilniki";
-const GET_PRICES_PATH = "ajax-state/product-buy"
 const PATH_JSID = join(process.cwd(), '.cache', 'qrator_jsid')
 const PATH_OUT_FILE = join(process.cwd(), "out.csv");
-const URL = "https://www.dns-shop.ru"
+const CACHE = join(process.cwd(), ".cache")
 
 type Product = {
   name: string|undefined
   price: string|undefined
+}
+
+if(!existsSync(CACHE)) {
+  mkdirSync(CACHE)
 }
 
 const products: Product[] = []
@@ -103,7 +106,7 @@ const parse = async (options: {
         appendFileSync(PATH_OUT_FILE, data)
       }
 
-      // browser.close()
+      browser.close()
   })
 }
 
