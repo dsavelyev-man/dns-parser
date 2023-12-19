@@ -1,0 +1,19 @@
+{
+  "name": "commerce-parser",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc && node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^3.3.0",
+    "csv-stringify": "^6.4.5",
+    "puppeteer": "^21.6.1"
+  }
+}
